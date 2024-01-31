@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const usersRoutes = require("./routes/user.routes");
 
 require("dotenv").config();
 
@@ -16,8 +17,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-
 // Uso de rutas
+app.use("/api/users", usersRoutes);
+
 const startServer = async () => {
   try {
     await mongoose.connect(
